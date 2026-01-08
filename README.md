@@ -72,5 +72,4 @@ As part of an ongoing interest in **Agentic AI and RAG Security**, future iterat
 > This tool should be used in compliance with the target website's `robots.txt` and Terms of Service. It is intended for academic research and personal data automation.
 
 ---
-**Author:** [Your Name]  
-**Context:** Developed for Masters Program Research - Data Acquisition & RAG Security.
+**Author:** [Waqar Salim]
