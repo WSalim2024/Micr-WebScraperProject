@@ -2,29 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Scraper Project</title>
+    <title>Micr-WebScraper Professional</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 40px; background-color: #f4f7f6; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        input[type="text"] { width: 80%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
-        button { padding: 12px 25px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #2980b9; }
-        textarea { width: 100%; height: 300px; margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 40px; }
+        .app-container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary); margin-top: 0; font-weight: 700; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 25px; }
+        input[type="text"] { flex-grow: 1; padding: 12px; border: 2px solid #ddd; border-radius: 6px; outline: none; transition: border-color 0.3s; }
+        input[type="text"]:focus { border-color: var(--accent); }
+        button { background: var(--accent); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: transform 0.1s; }
+        button:active { transform: scale(0.98); }
+        .output-label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--primary); }
+        textarea { width: 100%; height: 450px; border: 1px solid #ddd; border-radius: 6px; padding: 15px; font-family: 'Courier New', monospace; font-size: 13px; background: #fafafa; line-height: 1.6; }
+        .footer-note { margin-top: 20px; font-size: 12px; color: #7f8c8d; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>AI Data Scraper Tool</h1>
-        <p><em>Forward-thinking data extraction for IT Support and Research.</em></p>
+    <div class="app-container">
+        <h1>Micr-WebScraper Pro</h1>
+        <p><em>Advanced Data Acquisition & Sanitization Engine</em></p>
 
         <form method="POST">
-            <input type="text" name="url_input" placeholder="Paste your link here (e.g., https://example.com)" value="{{ url }}" required>
-            <button type="submit">Scrape Text</button>
+            <div class="input-group">
+                <input type="text" name="url_input" placeholder="Enter target URL (e.g., Wikipedia page with tables)..." value="{{ url }}" required>
+                <button type="submit">Execute Scrape</button>
+            </div>
         </form>
 
-        <label for="output">Scraped Content:</label>
-        <textarea id="output" readonly>{{ content }}</textarea>
+        <label class="output-label">Sanitized Output:</label>
+        <textarea readonly placeholder="Awaiting input data...">{{ content }}</textarea>
+
+        <div class="footer-note">
+            <strong>Compliance Note:</strong> This agent enforces a 1s delay and mimics a standard browser header to ensure ethical data collection.
+        </div>
     </div>
 </body>
 </html>
