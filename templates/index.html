@@ -2,40 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Micr-WebScraper Professional</title>
+    <title>Micr-WebScraper Dashboard</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 40px; }
-        .app-container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        h1 { color: var(--primary); margin-top: 0; font-weight: 700; }
-        .input-group { display: flex; gap: 10px; margin-bottom: 25px; }
-        input[type="text"] { flex-grow: 1; padding: 12px; border: 2px solid #ddd; border-radius: 6px; outline: none; transition: border-color 0.3s; }
-        input[type="text"]:focus { border-color: var(--accent); }
-        button { background: var(--accent); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: transform 0.1s; }
-        button:active { transform: scale(0.98); }
-        .output-label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--primary); }
-        textarea { width: 100%; height: 450px; border: 1px solid #ddd; border-radius: 6px; padding: 15px; font-family: 'Courier New', monospace; font-size: 13px; background: #fafafa; line-height: 1.6; }
-        .footer-note { margin-top: 20px; font-size: 12px; color: #7f8c8d; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 40px; }
+        .card { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-group { display: flex; gap: 10px; margin-top: 15px; }
+        input[type="text"] { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #ddd; }
+        .btn-text { background: #3498db; color: white; }
+        .btn-docs { background: #2ecc71; color: white; }
+        button { padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
+        textarea { width: 100%; height: 350px; margin-top: 20px; padding: 15px; border-radius: 6px; border: 1px solid #ddd; background: #f9f9f9; }
+        .tab-indicator { margin-top: 10px; font-size: 0.9em; color: #666; }
     </style>
 </head>
 <body>
-    <div class="app-container">
+    <div class="card">
         <h1>Micr-WebScraper Pro</h1>
-        <p><em>Advanced Data Acquisition & Sanitization Engine</em></p>
-
         <form method="POST">
-            <div class="input-group">
-                <input type="text" name="url_input" placeholder="Enter target URL (e.g., Wikipedia page with tables)..." value="{{ url }}" required>
-                <button type="submit">Execute Scrape</button>
+            <input type="text" name="url_input" placeholder="Paste URL here..." value="{{ url }}" required>
+            <div class="btn-group">
+                <button type="submit" class="btn-text" formaction="/scrape_text">Scrape Text</button>
+                <button type="submit" class="btn-docs" formaction="/fetch_docs">Fetch Documents</button>
             </div>
         </form>
 
-        <label class="output-label">Sanitized Output:</label>
-        <textarea readonly placeholder="Awaiting input data...">{{ content }}</textarea>
+        {% if active_tab %}
+        <div class="tab-indicator">Showing results for: <strong>{{ active_tab.upper() }}</strong></div>
+        {% endif %}
 
-        <div class="footer-note">
-            <strong>Compliance Note:</strong> This agent enforces a 1s delay and mimics a standard browser header to ensure ethical data collection.
-        </div>
+        <textarea readonly>{{ content }}</textarea>
     </div>
 </body>
 </html>
